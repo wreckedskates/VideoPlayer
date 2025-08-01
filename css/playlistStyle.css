@@ -1,0 +1,97 @@
+/* playlistStyle.css - Unified styling for all video playlist pages */
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #f9f9f9;
+    color: #222;
+}
+
+.page-title {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 2rem;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: calc(100vh - 80px);
+    box-sizing: border-box;
+}
+
+.video-player {
+    width: 66.66%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+#main-video {
+    width: 90%;
+    max-height: 90%;
+    border-radius: 6px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+}
+
+.video-controls {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.video-controls button {
+    padding: 8px 16px;
+    font-size: 1rem;
+    border: none;
+    background-color: #0077cc;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.video-controls button:hover {
+    background-color: #005fa3;
+}
+
+.video-list {
+    width: 33.33%;
+    overflow-y: auto;
+    border-left: 1px solid #ccc;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.video-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.video-list li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.video-list li:hover {
+    background-color: #f0f0f0;
+}
+
+.video-list li.active {
+    background-color: #ddeeff;
+    font-weight: bold;
+}
+
+video:-webkit-full-screen,
+video:-moz-full-screen,
+video:fullscreen {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
