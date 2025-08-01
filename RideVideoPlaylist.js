@@ -1,0 +1,133 @@
+const video = document.getElementById('main-video');
+const playlist = document.getElementById('playlist');
+const prevButton = document.getElementById('prev-video');
+const nextButton = document.getElementById('next-video');
+
+const videos = [
+    { src: 'https://pooveyfarmsracingtv.com/2025-06-02_GBH_mobile.mp4', title: '2025-06-02 Glacial Blue Hills MTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2025-06-01_UPAF_mobile.mp4', title: '2025-06-01_UPAF Ride' },
+    { src: 'https://pooveyfarmsracingtv.com/2025-05-10_Hungry_Bear_mobile.mp4', title: '2025-05-10 Hungry Bear' },
+    { src: 'https://pooveyfarmsracingtv.com/2025-04-12_Minooka_Park_MTB_mobile.mp4', title: '2025-04-12 Minooka Park MTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2025-03-08_Fat_Bike_Birkie_mobile.mp4', title: '2025-03-08 Fat Bike Birkie' },
+    { src: 'https://pooveyfarmsracingtv.com/2025-02-22_GBH_mobile.mp4', title: '2025-02-22 Glacial Blue Hills FTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2025-02-15_Minooka_Park_mobile.mp4', title: '2025-02-15 Minooka Park FTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2025-01-02_WinMan_FTB_mobile.mp4', title: '2025-01-02 WinMan Trails FTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2024-12-22_FTB_mobile.mp4', title: '2024-12-22 December FTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2024-09-20_Standing_Rocks_MTB_mobile.mp4', title: '2024-09-20 Standing Rocks MTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2024-09-14_PeninsulaCenturyFallChallenge_mobile.mp4', title: '2024-09-14 Peninsula Century Fall Challenge' },
+    { src: 'https://pooveyfarmsracingtv.com/2024-08-30_WinMan_Trails.mp4', title: '2024-08-30 WinMan Trails MTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2024-08-17_RAW_mobile.mp4', title: '2024-08-17 Ride Across Wisconsin' },
+    { src: 'https://pooveyfarmsracingtv.com/2024-07-27_Scenic_Shore_150_mobile.mp4', title: '2024-06-27 Scenic Shore 150' },
+    { src: 'https://pooveyfarmsracingtv.com/2024-06-08_Trek_100_mobile.mp4', title: '2024-06-08 Trek 100' },
+    { src: 'https://pooveyfarmsracingtv.com/2024-05-24_Marquette_MTB_mobile.mp4', title: '2024-05-24 Mt. Marquette MTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2024-04-20+Barry-Roubaix_mobile.mp4', title: '2024-04-20 Barry-Roubaix' },
+    { src: 'https://pooveyfarmsracingtv.com/2024-03-23+Glacial+Blue+Hills_mobile.mp4', title: '2024-03-23 Glacial Blue Hills FTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2024-01-28+Cudahy+Beach_mobile.mp4', title: '2024-01-28 Cudahy Beach FTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2024-01-13_21_January_Snow_mobile.mp4', title: '2024-01-13 January Snow Storm' },
+    { src: 'https://pooveyfarmsracingtv.com/2023-10-22+Standing+Rocks+MTB_mobile.mp4', title: '2023-10-22 Standing Rocks MTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2023-09-29+Nine+Mile+MTB_mobile.mp4', title: '2023-09-29 9 Mile MTB/FTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2023-09-10+Door+County+Century_mobile.mp4', title: '2023-09-10 Door County Century' },
+    { src: 'https://pooveyfarmsracingtv.com/2023-08-21+RAW_mobile.mp4', title: '2023-08-19 Ride Across Wisconsin' },
+    { src: 'https://pooveyfarmsracingtv.com/2023-07-21+Levis+Mound+MTB_mobile.mp4', title: '2023-07-21 Levis Mound MTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2023-06-23+Bikepacking+Adventure_mobile.mp4', title: '2023-06-23 Summer Bike Packing' },
+    { src: 'https://pooveyfarmsracingtv.com/2023-06-04+UPAF+Ride+For+The+Arts_mobile.mp4', title: '2023-06-04 UPAF Ride' },
+    { src: 'https://pooveyfarmsracingtv.com/2023-05-29_Marquette_MTB_Adventure_mobile.mp4', title: '2023-05-29 Mt. Marquette MTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2023-03-11+Fat+Bike+Birkie_mobile.mp4', title: '2023-03-11 Fat Bike Birkie' },
+    { src: 'https://pooveyfarmsracingtv.com/2022-01-28+January+Snow+Storm_mobile.mp4', title: '2023-01-28 January Snow Storm FTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2022-01-07+Cudahy+Beach_mobile.mp4', title: '2023-01-07 Cudahy Beach Ride' },
+    { src: 'https://pooveyfarmsracingtv.com/2022-12-27_WinMan_Trails_mobile.mp4', title: '2022-12-27 WinMan Trails FTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2022-10-07+Fall+Marquette+MTB+mobile.mp4', title: '2022-10-06 Mt. Marquette MTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2022_09_17_Glacial_Blue_Hills_mobile.mp4', title: '2022-09-17 Glacial Blue Hills MTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2022_Door_County_Century_mobile.mp4', title: '2022-09-11 Door County Century' },
+    { src: 'https://pooveyfarmsracingtv.com/2022-08-21+RAW_mobile.mp4', title: '2022-08-20 Ride Across Wisconsin' },
+    { src: 'https://pooveyfarmsracingtv.com/2022_UPAF_Ride_For_The_Arts_mobile.mp4', title: '2022-06-05 UPAF Ride For The Arts' },
+    { src: 'https://pooveyfarmsracingtv.com/2022-05-27_Bong_Recreation_Area_MTB_mobile.mp4', title: '2022-05-27 Bong Recreation FTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2022-04-30+Cheesehead_Roubaix_mobile.mp4', title: '2022-04-30 Cheesehead Roubaix' },
+    { src: 'https://pooveyfarmsracingtv.com/PFR_2022_Spring_mobile.mp4', title: '2022-03/04 Spring 2022 Compilation' },
+    { src: 'https://pooveyfarmsracingtv.com/2022-03-06+Thiensville+FTB+mobile.mp4', title: '2022-03-06 Thiensville FTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2022-02-27+Glacial+Blue+Hills+FTB+mobile.mp4', title: '2022-02-27 Glacial Blue Hills FTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2022-02-13+Grant+Park+FTB+mobile.mp4', title: '2022-02-13 Grant Park FTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2022-02-06+Frosty+Hog+FTB+mobile.mp4', title: '2022-02-06 Frosty Hog FTB Relay' },
+    { src: 'https://pooveyfarmsracingtv.com/2022-01-29+WRB%2BBG+Hoyt+Park+FTB+mobile.mp4', title: '2022-01-29 Hoyt Park FTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2022-01-23+Minooka+Park+mobile.mp4', title: '2022-01-23 Minooka Park FTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2022-01-22+Hugh+Jass+4+mobile.mp4', title: '2022-01-22 Hugh Jass #4' },
+    { src: 'https://pooveyfarmsracingtv.com/2022-01-16+Pleasant+Valley+Trails+mobile.mp4', title: '2022-01-16 Pleasant Valley Trails FTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2022-01-15+Poovey+Farms+Racing+-+Saturday+Hooning+mobile.mp4', title: '2022-01-15 Saturday FTB Hooning' },
+    { src: 'https://pooveyfarmsracingtv.com/2021-03-31+WRB%2BBG+-+Glacial+Blue+Hills+FTB+mobile.mp4', title: '2021-03-31 Glacial Blue Hills FTB' },
+    { src: 'https://pooveyfarmsracingtv.com/2021-03-28+WRB%2BBG+-+Milwaukee+River+FTB+mobile.mp4', title: '2021-03-28 Milwaukee River FTB' },
+    // ... more videos
+];
+
+let currentVideoIndex = 0;
+let nextVideo = null;
+let preloading = false;
+
+function loadVideo(index, autoplay = true) {
+    if (index >= 0 && index < videos.length) {
+        video.src = videos[index].src;
+        video.load();
+        if (autoplay) video.play();
+        currentVideoIndex = index;
+
+        const listItems = playlist.querySelectorAll('li');
+        listItems.forEach((li, i) => {
+            li.classList.toggle('active', i === index);
+        });
+
+        if (!preloading) {
+            preloadNextVideo();
+        }
+    } else if (index >= videos.length) {
+        loadVideo(0);
+    } else if (index < 0) {
+        loadVideo(videos.length - 1);
+    }
+}
+
+function preloadNextVideo() {
+    if (preloading) return;
+
+    preloading = true;
+    let nextIndex = (currentVideoIndex + 1) % videos.length;
+    if (nextVideo) {
+        nextVideo.remove();
+    }
+    nextVideo = document.createElement('video');
+    nextVideo.src = videos[nextIndex].src;
+    nextVideo.preload = 'auto';
+    nextVideo.muted = true;
+    nextVideo.style.display = 'none';
+    nextVideo.addEventListener('loadeddata', () => {
+        preloading = false;
+    });
+    document.body.appendChild(nextVideo);
+}
+
+videos.forEach((vid, index) => {
+    const li = document.createElement('li');
+    li.textContent = vid.title;
+    li.addEventListener('click', () => loadVideo(index));
+    playlist.appendChild(li);
+});
+
+loadVideo(0);
+
+prevButton.addEventListener('click', () => loadVideo(currentVideoIndex - 1));
+nextButton.addEventListener('click', () => loadVideo(currentVideoIndex + 1));
+
+video.addEventListener('ended', () => {
+    if (nextVideo) {
+        video.src = nextVideo.src;
+        video.load();
+        video.play();
+        nextVideo.remove();
+        nextVideo = null;
+        preloadNextVideo(); // Preload the NEXT after playing
+    }
+});
+
+video.addEventListener('timeupdate', () => {
+    if (video.duration - video.currentTime < 3 && !nextVideo && !preloading) {
+        preloadNextVideo();
+    }
+});
