@@ -1,8 +1,3 @@
-const video = document.getElementById('main-video');
-const playlist = document.getElementById('playlist');
-const prevButton = document.getElementById('prev-video');
-const nextButton = document.getElementById('next-video');
-
 const videos = [
     { src: 'https://pooveyfarmsracingtv.com/2024_Mix_Tape_Chapter_01.mp4', title: '1. Three Dog Night - Never Been To Spain' },
     { src: 'https://pooveyfarmsracingtv.com/2024_Mix_Tape_Chapter_02.mp4', title: '2. Father John Mistry - Well, You Can Do It Without Me' },
@@ -33,40 +28,3 @@ const videos = [
     { src: 'https://pooveyfarmsracingtv.com/2024_Mix_Tape_Chapter_27.mp4', title: '27. Kid Cudi - Up Up & Away' },
     // ... more videos
 ];
-
-let currentVideoIndex = 0;
-
-function loadVideo(index) {
-    if (index >= 0 && index < videos.length) {
-        video.src = videos[index].src;
-        video.load(); // Important: Reload the video element
-        video.play();
-        currentVideoIndex = index;
-
-        // Update active class in playlist
-        const listItems = playlist.querySelectorAll('li');
-        listItems.forEach((li, i) => {
-            li.classList.toggle('active', i === index);
-        });
-    }
-}
-
-// Populate playlist
-videos.forEach((vid, index) => {
-    const li = document.createElement('li');
-    li.textContent = vid.title;
-    li.addEventListener('click', () => loadVideo(index));
-    playlist.appendChild(li);
-});
-
-// Initial video load
-loadVideo(0);
-
-// Navigation buttons
-prevButton.addEventListener('click', () => loadVideo(currentVideoIndex - 1));
-nextButton.addEventListener('click', () => loadVideo(currentVideoIndex + 1));
-
-// Autoplay next video
-video.addEventListener('ended', () => {
-    loadVideo(currentVideoIndex + 1);
-});

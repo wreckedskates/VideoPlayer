@@ -17,10 +17,13 @@
             </div>
         </div>
         <div class="video-list">
-            <ul id="playlist">
-                </ul>
+            <ul id="playlist"></ul>
         </div>
     </div>
-    <script src="js/2023MixTape.js"></script>
+    <script src="js/2023MixTapeVideos.js"></script>
+    <script src="js/sharedPlaylistCore.js"></script>
+    <script>
+        initPlaylist({ videos: videoList });
+    </script>
 </body>
 </html>

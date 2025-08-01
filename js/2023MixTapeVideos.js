@@ -1,9 +1,4 @@
-const video = document.getElementById('main-video');
-const playlist = document.getElementById('playlist');
-const prevButton = document.getElementById('prev-video');
-const nextButton = document.getElementById('next-video');
-
-const videos = [
+const videoList = [
     { src: 'https://pooveyfarmsracingtv.com/2023_Mix_Tape_Chapter_01.mp4', title: '1. Beans On Toast - Things' },
     { src: 'https://pooveyfarmsracingtv.com/2023_Mix_Tape_Chapter_02.mp4', title: '2. Ruarri Joseph - Hope for Grey Trousers' },
     { src: 'https://pooveyfarmsracingtv.com/2023_Mix_Tape_Chapter_03.mp4', title: '3. The Charlatans - The Blind Stagger' },
@@ -31,77 +26,3 @@ const videos = [
     { src: 'https://pooveyfarmsracingtv.com/2023_Mix_Tape_Chapter_25.mp4', title: '25. Twenty One Pilots - Heathens' },
     // ... more videos
 ];
-
-let currentVideoIndex = 0;
-let nextVideo = null;
-let preloading = false;
-
-function loadVideo(index, autoplay = true) {
-    if (index >= 0 && index < videos.length) {
-        video.src = videos[index].src;
-        video.load();
-        if (autoplay) video.play();
-        currentVideoIndex = index;
-
-        const listItems = playlist.querySelectorAll('li');
-        listItems.forEach((li, i) => {
-            li.classList.toggle('active', i === index);
-        });
-
-        if (!preloading) {
-            preloadNextVideo();
-        }
-    } else if (index >= videos.length) {
-        loadVideo(0);
-    } else if (index < 0) {
-        loadVideo(videos.length - 1);
-    }
-}
-
-function preloadNextVideo() {
-    if (preloading) return;
-
-    preloading = true;
-    let nextIndex = (currentVideoIndex + 1) % videos.length;
-    if (nextVideo) {
-        nextVideo.remove();
-    }
-    nextVideo = document.createElement('video');
-    nextVideo.src = videos[nextIndex].src;
-    nextVideo.preload = 'auto';
-    nextVideo.muted = true;
-    nextVideo.style.display = 'none';
-    nextVideo.addEventListener('loadeddata', () => {
-        preloading = false;
-    });
-    document.body.appendChild(nextVideo);
-}
-
-videos.forEach((vid, index) => {
-    const li = document.createElement('li');
-    li.textContent = vid.title;
-    li.addEventListener('click', () => loadVideo(index));
-    playlist.appendChild(li);
-});
-
-loadVideo(0);
-
-prevButton.addEventListener('click', () => loadVideo(currentVideoIndex - 1));
-nextButton.addEventListener('click', () => loadVideo(currentVideoIndex + 1));
-
-video.addEventListener('ended', () => {
-    if (nextVideo) {
-        video.src = nextVideo.src;
-        video.load();
-        video.play();
-        nextVideo.remove();
-        nextVideo = null;
-        preloadNextVideo(); // Preload the NEXT after playing
-    }
-});
-
-video.addEventListener('timeupdate', () => {
-    if (video.duration - video.currentTime < 3 && !nextVideo && !preloading) {
-        preloadNextVideo();
-    }
-});
