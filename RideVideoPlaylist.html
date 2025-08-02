@@ -22,5 +22,11 @@
         </div>
     </div>
     <script src="js/RideVideoPlaylist.js"></script>
+    <script src="js/sharedPlaylistCore.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            initPlaylist({ videos: window.videoList });
+        });
+    </script>
 </body>
 </html>

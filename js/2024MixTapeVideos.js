@@ -1,4 +1,4 @@
-const videos = [
+window.videoList = [
     { src: 'https://pooveyfarmsracingtv.com/2024_Mix_Tape_Chapter_01.mp4', title: '1. Three Dog Night - Never Been To Spain' },
     { src: 'https://pooveyfarmsracingtv.com/2024_Mix_Tape_Chapter_02.mp4', title: '2. Father John Mistry - Well, You Can Do It Without Me' },
     { src: 'https://pooveyfarmsracingtv.com/2024_Mix_Tape_Chapter_03.mp4', title: '3. Sterophonics - Have a Nice Day' },

@@ -21,6 +21,12 @@
                 </ul>
         </div>
     </div>
-    <script src="js/2024MixTape.js"></script>
+    <script src="js/2024MixTapeVideos.js"></script>
+    <script src="js/sharedPlaylistCore.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            initPlaylist({ videos: window.videoList });
+        });
+    </script>
 </body>
 </html>

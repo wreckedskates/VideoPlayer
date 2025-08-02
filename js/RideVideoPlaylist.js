@@ -1,4 +1,4 @@
-const videos = [
+window.videoList = [
     { src: 'https://pooveyfarmsracingtv.com/2025-06-02_GBH_mobile.mp4', title: '2025-06-02 Glacial Blue Hills MTB' },
     { src: 'https://pooveyfarmsracingtv.com/2025-06-01_UPAF_mobile.mp4', title: '2025-06-01_UPAF Ride' },
     { src: 'https://pooveyfarmsracingtv.com/2025-05-10_Hungry_Bear_mobile.mp4', title: '2025-05-10 Hungry Bear' },
