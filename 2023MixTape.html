@@ -23,7 +23,9 @@
     <script src="js/2023MixTapeVideos.js"></script>
     <script src="js/sharedPlaylistCore.js"></script>
     <script>
-        initPlaylist({ videos: videoList });
+        window.addEventListener('DOMContentLoaded', () => {
+            initPlaylist({ videos: window.videoList });
+        });
     </script>
 </body>
 </html>

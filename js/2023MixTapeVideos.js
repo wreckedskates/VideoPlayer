@@ -1,4 +1,4 @@
-const videoList = [
+window.videoList = [
     { src: 'https://pooveyfarmsracingtv.com/2023_Mix_Tape_Chapter_01.mp4', title: '1. Beans On Toast - Things' },
     { src: 'https://pooveyfarmsracingtv.com/2023_Mix_Tape_Chapter_02.mp4', title: '2. Ruarri Joseph - Hope for Grey Trousers' },
     { src: 'https://pooveyfarmsracingtv.com/2023_Mix_Tape_Chapter_03.mp4', title: '3. The Charlatans - The Blind Stagger' },

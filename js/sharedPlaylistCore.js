@@ -7,7 +7,7 @@ let nextButton;
 let currentVideoIndex = 0;
 let nextVideo = null;
 let preloading = false;
-let videoList = [];
+let videoList;
 
 function initPlaylist(config) {
     video = document.getElementById('main-video');
